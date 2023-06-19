@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BIAS PRECERY</title>
+  <link rel="stylesheet" href="/styles/home.css" />
+  <!-- Font Awersome -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-fD9DI5bZwQxOi7MhYWnnNPlvXdp/2Pj3XSTRrFs5FQa4mizyGLnJcN6tuvUS6LbmgN1ut+XGSABKvjN0H6Aoow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="/scripts/home.js"></script>
+
+</head>
+
+<body>
+  <nav class="navigation">
+
+    <a href="#" class="logo">
+      <i class="https://cdn1.iconfinder.com/data/icons/jumpicon-marketing-glyph/32/-_Store-Shop-Mart-Market-Grocery-Mall-1024.png"></i>
+      <span>B</span>P
+    </a>
+    <input type="checkbox" class="menu-btn" id="menu-btn">
+    <label for="menu-btn" class="menu-icon">
+      <span class="nav-icon"></span>
+    </label>
+    <ul class="menu">
+      <li>
+        <a href="/" class="active">
+          Home
+        </a>
+      </li>
+
+      <li>
+        <a href="#category">
+          Categories
+        </a>
+      </li>
+
+      <li>
+        <a href="#popular-bundle-pack">
+          Packages
+        </a>
+      </li>
+
+      <li>
+        <a href="/contact">
+          Contact&nbsp;Us
+        </a>
+      </li>
+
+      <li>
+        <a href="/feedback">
+          Feedback
+        </a>
+      </li>
+
+      <li>
+        <a href="/about">
+          About&nbsp;us
+        </a>
+      </li>
+
+      <li>
+        <a href="#download-app">
+          App
+        </a>
+      </li>
+
+      <li>
+        <a href="/auth/register">
+          Sign&nbsp;up
+        </a>
+      </li>
+
+
+      <li>
+        <a href="/auth/login">
+          Login
+        </a>
+      </li>
+    </ul>
+
+    <div class="right-nav">
+      <a href="/wishlist" class="like">
+        <i class="fas fa-heart"></i>
+        <span>
+          <%= wishlistItem %>
+        </span>
+      </a>
+      <a href="/cart" class="cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span>
+          <%= cartItem %>
+        </span>
+      </a>
+      <a href="/profile" class="user-profile">
+        <i class="fas fa-user"></i>
+        <!-- <span>
+          1
+        </span> -->
+      </a>
+    </div>
+  </nav>
+
+  <section id="search-banner">
+    <img alt="bg" class="bg-1" src="https://i.imgur.com/h8pXo1s.png">
+
+    <img alt="bg" class="bg-1_rev" src="https://i.imgur.com/h8pXo1s.png">
+
+    <img alt="bg-2" class="bg-2" src="https://i.imgur.com/2smuQIz.png">
+
+    <div class="search-banner-text">
+
+      <h1>
+        Order Your daily Groceries
+      </h1>
+
+      <strong>
+        #Free Delivery
+      </strong>
+      <form action="/search" class="search-box" method="get">
+        <i class="fas fa-search"></i>
+        <input type="text" class="search-input" placeholder="Search" name="query" size="80px" required>
+        <input type="submit" class="search-btn" value="Search">
+      </form>
+      <br>
+      <h3>
+        <a href='/deals' style='color: #40aa54'>
+          Click here to learn about today's best deals
+        </a>
+      </h3>
+
+    </div>
+  </section>
+
+  <section id="category">
+    <div class="category-heading">
+      <h2>
+        Category
+      </h2>
+      <span>
+        All
+      </span>
+    </div>
+    <div class="category-container">
+
+      <a class="category-box" href='/categories/fruits'>
+        <img alt="Fruits and Vegetables" src=".png">
+        <span>Fruits & <br> Vegetables</span>
+      </a>
+      <a class="category-box" href='/categories/medicine'>
+        <img alt="Medicines" src="3.png">
+        <span>Medicine</span>
+      </a>
+      <a class="category-box" href="/categories/babycare">
+        <img alt="Baby Care Products" src="H.png">
+        <span>Baby Care</span>
+      </a>
+      <a class="category-box" href='/categories/office'>
+        <img alt="Fish" src="png">
+        <span>Stationary</span>
+      </a>
+      <a class="category-box" href='/categories/beauty'>
+        <img alt="Beauty Products" src="https://i.imgur.com/Bm0yLex.png">
+        <span>Beauty</span>
+      </a>
+      <a class="category-box" href='/categories/gardening'>
+        <img alt="Gardening Products" src="https://i.imgur.com/AjGulv5.png">
+        <span>Gardening</span>
+      </a>
+    </div>
+
+  </section>
+
+  <section id="popular-product">
+
+    <div class="product-heading">
+      <h3>Popular Product</h3>
+      <span>All</span>
+    </div>
+
+    <div class="product-container">
+
+      <% products.forEach(product => { %>
+      <div class="product-box">
+        <img alt="<%= product.name %>" src="<%= product.img %>">
+        <strong><%= product.name %></strong>
+        <span class="quantity"><%= product.quantity %> KG</span>
+        <span class="price">Rs. <%= product.price %></span>
+        <form action="/cart/add/<%= product._id %>/<%= user.name %>" method="post">
+          <button type="submit" class="cart-btn">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </form>
+
+        <form action="/wishlist/add/<%= product._id %>/<%= user.name %>" method="post">
+          <button type="submit">
+            <a class="like-btn">
+              <i class="far fa-heart"></i>
+            </a>
+          </button>
+        </form>
+      </div>
+      <% }) %>
+    </div>
+  </section>
+
+  <section id="popular-bundle-pack">
+    <div class="product-heading">
+      <h3>Popular Bundle Pack</h3>
+    </div>
+    <div class="product-container">
+
+      <% bundle.forEach(product => { %>
+      <div class="product-box">
+        <img alt="<%= product.name %>" src="<%= product.img %>">
+        <strong><%= product.name %></strong>
+        <span class="quantity"><%= product.quantity %> KG</span>
+        <span class="price">Rs. <%= product.price %></span>
+
+        <form action="/cart/add/<%= product._id %>/<%= user.name %>" method="post">
+          <button type="submit" class="cart-btn">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </form>
+        <form action="/wishlist/add/<%= product._id %>/<%= user.name %>" method="post">
+          <button type="submit">
+            <a class="like-btn">
+              <i class="far fa-heart"></i>
+            </a>
+          </button>
+        </form>
+      </div>
+      <% }) %>
+    </div>
+  </section>
+
+  <section id="clients">
+    <div class="client-heading">
+      <h3>What Our Clients Say</h3>
+    </div>
+    <div class="client-box-container">
+      <div class="client-box">
+        <div class="client-profile">
+          <img alt="client" src="sw.jpg">
+          <div class="profile-text">
+            <strong>Smriti Adhikari</strong>
+            <span>Graphic Designer</span>
+          </div>
+        </div>
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p>BIAS PRECERY is the best. BP never fails to dissapoint me. Grocery shopping has become so easy with BIAS PRECERY.</Str>
+        </p>
+      </div>
+      <div class="client-box">
+        <div class="client-profile">
+          <img alt="client" src="sw.jpg">
+          <div class="profile-text">
+            <strong>Swati Bisht</strong>
+            <span>Graphic Designer</span>
+          </div>
+        </div>
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p>BIAS PRECERY is the best. BP never fails to dissapoint me. Grocery shopping has become so easy with BIAS PRECERY.</Str>
+        </p>
+      </div>
+      <div class="client-box">
+        <div class="client-profile">
+          <img alt="client" src="hb.jpg">
+          <div class="profile-text">
+            <strong>Himanshu Bora</strong>
+            <span>Software Developer</span>
+          </div>
+        </div>
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p>BIAS PRECERY is just amazing. I can buy all my groceries from a single place. The groceries are available at very affordable prices. And, the groceries are delivered at the time slot you choose and prefer.</p>
+      </div>
+      <div class="client-box">
+        <div class="client-profile">
+          <img alt="client" src="ab.jpg">
+          <div class="profile-text">
+            <strong>Ayush Bhagat</strong>
+            <span>Web Developer</span>
+          </div>
+        </div>
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p>At BIAS Precery, you can get fresh fruits and vegetables. And it is not only about fruits or vegetables, you can buy all kinds of stuff here.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <a href="https://cdn1.iconfinder.com/data/icons/jumpicon-marketing-glyph/32/-_Store-Shop-Mart-Market-Grocery-Mall-1024.png"><span>B</span>P</a>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/?lang=en-in"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <strong>Product</strong>
+        <ul>
+          <li><a href="#">Grocery</a></li>
+          <li><a href="#">Packages</a></li>
+          <li><a href="#">Popular</a></li>
+          <li><a href="#">New</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <strong>Category</strong>
+        <ul>
+          <li><a href="#">Beauty</a></li>
+          <li><a href="#">Vegetables</a></li>
+          <li><a href="#">Baby</a></li>
+          <li><a href="#">Medicine</a></li>
+        </ul>
+      </div>
+
+      <strong>Contact</strong>
+      <ul>
+        <li><a href="#">Phone : 9536977782</a></li>
+        <li><a href="#">Email : biasprecery@gmail.com</a></li>
+      </ul>
+      <br>
+      <p style="color: aliceblue;">Copyright bias@2023| All Rights Reserved</p>
+    </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

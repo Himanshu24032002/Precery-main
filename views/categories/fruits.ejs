@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+
+<title>
+
+  Fruits and Vegetables
+
+</title>
+
+<script src="https://kit.fontawesome.com/5471644867.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" type="text/css" href="/styles/fruits.css">
+
+<body>
+
+  <section id="popular-product">
+    <!--heading----------->
+    <div class="product-heading">
+      <h2 class='fruits-heading'>Fruits and Vegetables</h2>
+    </div>
+    <!--box-container------>
+    <div class="product-container">
+      <!--box---------->
+      <% products.forEach(product => { %>
+      <div class="product-box">
+        <img alt="<%= product.name %>" src="<%= product.img %>">
+        <strong><%= product.name %></strong>
+        <span class="quantity"><%= product.quantity %> KG</span>
+        <span class="price">Rs. <%= product.price %></span>
+        <!--cart-btn------->
+        <form action="/cart/add/<%= product._id %>/<%= user.name %>" method="post">
+          <button type="submit" class="cart-btn">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </form>
+        <!--like-btn------->
+        <form action="/wishlist/add/<%= product._id %>/<%= user.name %>" method="post">
+          <button type="submit">
+            <a class="like-btn">
+              <i class="far fa-heart"></i>
+            </a>
+          </button>
+        </form>
+      </div>
+      <% }) %>
+
+  </section>
+  <div style="width: 80%;margin:2em auto; text-align: center; ">
+    <a href="/" class="cart-btn" style='padding: 5em none;border: 1px solid rgb(137, 231, 137); border-radius: 0.5em;'>
+      <i class="fas fa-home"></i> Home
+    </a>
+  </div>
+
+</body>
+
+</html>

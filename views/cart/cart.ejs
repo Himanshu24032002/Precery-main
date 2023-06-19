@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <title>
+
+    Cart
+
+  </title>
+
+  <link rel="stylesheet" type="text/css" href="/styles/wishlist.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-fD9DI5bZwQxOi7MhYWnnNPlvXdp/2Pj3XSTRrFs5FQa4mizyGLnJcN6tuvUS6LbmgN1ut+XGSABKvjN0H6Aoow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>
+      Cart
+    </h1>
+
+    <div class="cart">
+      <div class="products">
+        <% products.forEach(product => { %>
+        <div class="product">
+          <img src="<%= product.img %>">
+          <div class="product-info">
+            <h3 class="product-name">
+              <%= product.name %>
+            </h3>
+            <h4 class="product-price">
+              Rs. <%= product.price %>
+            </h4>
+            <p class="product-quantity">
+              Qnt: 1
+              <!-- <input value="1" name="wishlist[<%= product.name %>]"> -->
+            </p>
+            <form action="/cart/remove/<%= product._id %>/<%= user.name %>" method="post">
+              <button type="submit">
+                <p class="product-remove">
+                  <i class="fas fa-trash-alt"></i>
+                  <span class="remove">
+                    Remove
+                  </span>
+                </p>
+              </button>
+            </form>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+
+
+      <div class="cart-total">
+
+        <p>
+          <span>
+            Total Price
+          </span>
+
+          <span>
+            Rs. <%= sum %>
+          </span>
+        </p>
+
+        <p>
+          <span>
+            No. of Items
+          </span>
+
+          <span>
+            <%=products.length %>
+          </span>
+        </p>
+
+        <p>
+          <span>
+            You Save
+          </span>
+          <span>
+            Rs. 0
+          </span>
+        </p>
+
+
+        <a href="/cart/checkout">
+          Buy Now
+        </a>
+      </div>
+
+    </div>
+
+    <p class="product-remove" style="text-align: center; margin: auto;">
+      <a href="/" style="text-decoration: none; color: white; ::hover{ font: red;}">
+        <i class="fas fa-home"></i>
+        <span class="remove">
+          Home
+        </span>
+      </a>
+    </p>
+  </div>
+
+</body>
+
+</html>

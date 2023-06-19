@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BIAS Precery</title>
+  <link rel="stylesheet" href="/styles/home.css" />
+  <!-- Font Awersome -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-fD9DI5bZwQxOi7MhYWnnNPlvXdp/2Pj3XSTRrFs5FQa4mizyGLnJcN6tuvUS6LbmgN1ut+XGSABKvjN0H6Aoow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="/scripts/home.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap-grid.min.css" integrity="sha512-EAgFb1TGFSRh1CCsDotrqJMqB2D+FLCOXAJTE16Ajphi73gQmfJS/LNl6AsjDqDht6Ls7Qr1KWsrJxyttEkxIA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <!-- NavBar -->
+  <nav class="navigation">
+
+    <a href="#" class="logo">
+      <i class="/"></i>
+      <span>B</span>P
+    </a>
+    <input type="checkbox" class="menu-btn" id="menu-btn">
+    <label for="menu-btn" class="menu-icon">
+      <span class="nav-icon"></span>
+    </label>
+    <ul class="menu">
+      <li>
+        <a href="/" class="active">
+          Home
+        </a>
+      </li>
+
+      <li>
+        <a href="#category">
+          Categories
+        </a>
+      </li>
+
+      <li>
+        <a href="#popular-bundle-pack">
+          Packages
+        </a>
+      </li>
+
+      <li>
+        <a href="/contact">
+          Contact&nbsp;Us
+        </a>
+      </li>
+
+      <li>
+        <a href="/feedback">
+          Feedback
+        </a>
+      </li>
+
+      <li>
+        <a href="/about">
+          About&nbsp;us
+        </a>
+      </li>
+
+      <li>
+        <a href="#download-app">
+          App
+        </a>
+      </li>
+
+      <li>
+        <a href="/auth/register">
+          Sign&nbsp;up
+        </a>
+      </li>
+
+
+      <li>
+        <a href="/auth/login">
+          Login
+        </a>
+      </li>
+    </ul>
+
+    <div class="right-nav">
+      <a href="/wishlist" class="like">
+        <i class="fas fa-heart"></i>
+        <span>
+          <%= wishlistItem %>
+        </span>
+      </a>
+      <a href="/cart" class="cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span>
+          <%= cartItem %>
+        </span>
+      </a>
+      <a href="/profile" class="user-profile">
+        <i class="fas fa-user"></i>
+        <!-- <span>
+              1
+            </span> -->
+      </a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2 class="display-1">Result</h2>
+    <% products.forEach(product => { %>
+    <div class="product-box">
+      <img alt="<%= product.name %>" src="<%= product.img %>">
+      <strong><%= product.name %></strong>
+      <span class="quantity"><%= product.quantity %> KG</span>
+      <span class="price">Rs. <%= product.price %></span>
+      <form action="/cart/add/<%= product._id %>/<%= user.name %>" method="post">
+        <button type="submit" class="cart-btn">
+          <i class="fas fa-shopping-bag"></i> Add to Cart
+        </button>
+      </form>
+
+      <form action="/wishlist/add/<%= product._id %>/<%= user.name %>" method="post">
+        <button type="submit">
+          <a class="like-btn">
+            <i class="far fa-heart"></i>
+          </a>
+        </button>
+      </form>
+    </div>
+    <% }) %>
+
+  </div>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <a href="/"><span>B</span>P</a>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/?lang=en-in"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <strong>Product</strong>
+        <ul>
+          <li><a href="#">Grocery</a></li>
+          <li><a href="#">Packages</a></li>
+          <li><a href="#">Popular</a></li>
+          <li><a href="#">New</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <strong>Category</strong>
+        <ul>
+          <li><a href="#">Beauty</a></li>
+          <li><a href="#">Vegetables</a></li>
+          <li><a href="#">Baby</a></li>
+          <li><a href="#">Medicine</a></li>
+        </ul>
+      </div>
+
+      <strong>Contact</strong>
+      <ul>
+        <li><a href="#">Phone : 9536977782</a></li>
+        <li><a href="#">Email : biasprecery@gmail.com</a></li>
+      </ul>
+      <br>
+      <p style="color: aliceblue;">Copyright bias@2023| All Rights Reserved</p>
+    </div>
+    </div>
+  </footer>
+</body>
+
+</html>
